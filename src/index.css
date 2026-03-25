@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-600 antialiased selection:bg-emerald-500/20 selection:text-emerald-900;
+  }
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: white !important;
+  }
+  
+  /* Force framer-motion elements to be fully visible and in their final position when printing */
+  [style*="opacity"], [style*="transform"] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  @page {
+    margin: 10mm 15mm;
+  }
+  /* Only avoid breaking inside specific small elements to prevent massive whitespace */
+  .glass-card, .job-block, .project-block {
+    break-inside: avoid;
+    /* Fix for Chrome print bug with backdrop-filter causing blank elements */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: white !important;
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important; /* slate-300 */
+  }
+  /* Hide background patterns in print */
+  .bg-grid-pattern {
+    display: none !important;
+  }
+}
+
+/* Subtle background */
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-slate-200 shadow-sm rounded-2xl;
+}

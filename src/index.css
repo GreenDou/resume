@@ -30,6 +30,8 @@
     -webkit-backdrop-filter: none !important;
     background-color: white !important;
     box-shadow: none !important;
+  }
+  .glass-card, .project-block {
     border: 1px solid #cbd5e1 !important; /* slate-300 */
   }
   /* Hide background patterns in print */
